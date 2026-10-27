@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">
 </head>
+
 <body>
+    <form id="tax_form">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">basic salary</label>
+            <input type="number" class="form-control" id="basic" aria-describedby="emailHelp">
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">benefits</label>
+                <input type="number" class="form-control" id="benefits">
+            </div>
+
+            <button type="submit" class="btn-solid theme-primary">Submit</button>
+    </form>
+    </div>
     <div>
-        <p>Taxcalculator</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Tax category</th>
+                    <th scope="col">Tax value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gross salary</td>
+                    <td id="gross"></td>
+                </tr>
+                <tr>
+                    <td>NHIF</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>NSSF</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>NHDF</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Taxable income</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>payee</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Net Salary</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </div>
     <script src="tax.js"></script>
-    
+    <script> src = "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"</script>
+
 </body>
+
 </html>
