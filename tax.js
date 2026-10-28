@@ -8,6 +8,29 @@ document.getElementById('tax_form').addEventListener('submit', function (event) 
     let gross_salary = calculate_gross(basic_salary, benefits);
     document.getElementById('gross').innerHTML = gross_salary
 
+    function calculateNHIF(grossSalary) {
+        if (grossSalary < 6000) return 150;
+        else if (grossSalary < 8000) return 300;
+        else if (grossSalary < 12000) return 400;
+        else if (grossSalary < 15000) return 500;
+        else if (grossSalary < 20000) return 600;
+        else if (grossSalary < 25000) return 750;
+        else if (grossSalary < 30000) return 850;
+        else if (grossSalary < 35000) return 900;
+        else if (grossSalary < 40000) return 950;
+        else if (grossSalary < 45000) return 1000;
+        else if (grossSalary < 50000) return 1100;
+        else if (grossSalary < 60000) return 1200;
+        else if (grossSalary < 70000) return 1300;
+        else if (grossSalary < 80000) return 1400;
+        else if (grossSalary < 90000) return 1500;
+        else if (grossSalary < 100000) return 1600;
+        else return 1700;
+    }
+    let nhif = calculateNHIF(gross_salary)
+    document.getElementById('nhif').innerHTML = nhif;
+
+
     function calculate_nssf(gross_salary) {
         const NSSF_RATE = 0.06;
         const MINIMUM = 18000;
@@ -28,9 +51,43 @@ document.getElementById('tax_form').addEventListener('submit', function (event) 
         return gross_salary - (nssf + nhdf + nhif);
     }
     let taxable_income = calculate_taxable_income(gross_salary, nssf, nhdf, nhif);
-    documebnt.getElementById('taxable_income').innerHTML = taxable_income;
+    document.getElementById('taxable_income').innerHTML = taxable_income;
 
-    
+    function calculatePAYEE(taxableIncome) {
+    let payee = 0;
+
+    if (taxableIncome > 0) {
+        payee += Math.min(taxableIncome, 24000) * 0.10;
+    }
+
+    if (taxableIncome > 24000) {
+        payee += Math.min(taxableIncome - 24000, 8333) * 0.25;
+    }
+
+    if (taxableIncome > 32333) {
+        payee += Math.min(taxableIncome - 32333, 467667) * 0.30;
+    }
+
+    if (taxableIncome > 500000) {
+        payee += Math.min(taxableIncome - 500000, 300000) * 0.325;
+    }
+
+    if (taxableIncome > 800000) {
+        payee += (taxableIncome - 800000) * 0.35;
+    }
+
+     if (payee < 2400) {
+        return 0;
+    } else {
+        return payee - 2400;
+    }
+
+}
+let payee = calculatePAYEE('taxableIncome');
+document.getElementById('payee').innerHTML = payee;
+
+
+
 });
 //TASK 15: Using Python or PHP or Java or Ruby or JavaScript
 //Write a program that takes input of someone's basic salary and benefits, adds them to find the gross salary then uses  the gross salary to find the NHIF. 
@@ -69,18 +126,37 @@ let taxable_income = calculate_taxable_income(gross_salary, nssf, nhdf, nhif);
 //Continue with the same program and find the person's PAYEE using the taxable income above.
 //Find the Kenya PAYEE Tax Rate using THIS LINK
 
-function calculate_payee(taxable_pay) {
-    let tax = 0;
-    let remaining = taxable_pay;
-    if (remaining > 24000) {
-        tax += 24000 * 0.10;
-        remaining -= 24000;
-    } else {
-        tax += remaining * 0.10;
-        return Math.max(0, tax - 24000);
+function calculatePAYEE(taxableIncome) {
+    let payee = 0;
+
+    if (taxableIncome > 0) {
+        payee += Math.min(taxableIncome, 24000) * 0.10;
     }
-    let payee = calculate_payee(taxable_pay);
-}// I am mathematically stuck here and can't proceed comfortably without guidence in as much as the arguments and parameters are provided in the link to question 19. I will be grateful to learn this through revision 
+
+    if (taxableIncome > 24000) {
+        payee += Math.min(taxableIncome - 24000, 8333) * 0.25;
+    }
+
+    if (taxableIncome > 32333) {
+        payee += Math.min(taxableIncome - 32333, 467667) * 0.30;
+    }
+
+    if (taxableIncome > 500000) {
+        payee += Math.min(taxableIncome - 500000, 300000) * 0.325;
+    }
+
+    if (taxableIncome > 800000) {
+        payee += (taxableIncome - 800000) * 0.35;
+    }
+
+     if (payee < 2400) {
+        return 0;
+    } else {
+        return payee - 2400;
+    }
+}
+
+// I am mathematically stuck here and can't proceed comfortably without guidence in as much as the arguments and parameters are provided in the link to question 19. I will be grateful to learn this through revision 
 
 
 
